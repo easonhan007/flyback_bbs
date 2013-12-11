@@ -20,6 +20,7 @@ FlybackBbs::App.controllers :home do
   # end
   
   get :index do
+    @categories = Category.order('created_at DESC').limit(5)    
     render 'home/index'
   end
 

@@ -1,3 +1,23 @@
+-@categories.each do |cate|
+	div class="cell topic row"
+		div class="category col-md-2"
+			h3 
+				a href='#' 
+					= cate.name
+		div class="articles col-md-10"
+			- article= cate.articles.order('commented_at').limit(1).first
+			h4
+				a href='#' 
+					= article.title		 			
+			div class='text-muted'
+				a href='#' user
+				span class='ds' |
+				| posted &nbsp
+				= article.created_at.strftime('%m-%d %H:%M')
+				span class='ds' |
+				| last commentd by 
+				a href='#' user
+
 div class="cell topic row"
 	div class="category col-md-2"
 		h3 
@@ -58,3 +78,7 @@ div class="cell topic row"
 			span class='ds' |
 			| last commentd by 
 			a href='#' user
+javascript:
+	$('document').ready(function(){
+		$('.cell').last().css('border-bottom', 'none');
+	});

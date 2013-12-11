@@ -10,7 +10,7 @@ html lang='en'
     title = @title.present? ? "#{@title} | Flyback" : "Flyback"
     link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet'
     =stylesheet_link_tag 'bootstrap', 'application' 
-
+    =javascript_include_tag 'jquery'
   body
     .container
       .header
@@ -27,4 +27,4 @@ html lang='en'
     hr
     footer
       p &copy; Flyback 2013
-    =javascript_include_tag 'jquery', (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/affix bootstrap/alert bootstrap/button bootstrap/carousel bootstrap/collapse bootstrap/dropdown  bootstrap/tooltip bootstrap/transition  bootstrap/modal bootstrap/popover bootstrap/scrollspy bootstrap/tab]), :application
+    =javascript_include_tag (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/affix bootstrap/alert bootstrap/button bootstrap/carousel bootstrap/collapse bootstrap/dropdown  bootstrap/tooltip bootstrap/transition  bootstrap/modal bootstrap/popover bootstrap/scrollspy bootstrap/tab]), :application
