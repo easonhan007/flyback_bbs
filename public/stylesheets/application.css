@@ -1,0 +1,92 @@
+/* -- Begin Layout -- */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+#content,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  background-color: white;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+}
+
+.category {
+	height: 50px;
+}
+
+
+.category h3 {
+}
+
+.box {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #E2E2E9;
+  margin-bottom: 20px;
+}
+
+.box .cell, .box-header {
+    padding: 10px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.box .inner {
+    padding: 10px;
+}
+
+.box .header {
+    padding: 10px;
+    border-bottom: 1px solid #E2E2E2;
+}
+
+.ds {
+	color: #eeeeee;
+	padding: 0 1em 0 1em;
+}
