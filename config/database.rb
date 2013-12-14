@@ -20,7 +20,7 @@ ActiveRecord::Base.configurations[:development] = {
   :database  => 'flyback_bbs_development',
   :pool      => 5,
   :username  => 'root',
-  :password  => 'wang1985',
+  :password  => 'root',
   :host      => 'localhost',
   :socket    => '/var/run/mysqld/mysqld.sock'
 
@@ -33,7 +33,7 @@ ActiveRecord::Base.configurations[:production] = {
   :database  => 'flyback_bbs_production',
   :pool      => 5,
   :username  => 'root',
-  :password  => 'wang1985',
+  :password  => 'root',
   :host      => 'localhost',
   :socket    => '/var/run/mysqld/mysqld.sock'
 
@@ -46,7 +46,7 @@ ActiveRecord::Base.configurations[:test] = {
   :database  => 'flyback_bbs_test',
   :pool      => 5,
   :username  => 'root',
-  :password  => '',
+  :password  => 'root',
   :host      => 'localhost',
   :socket    => '/tmp/mysql.sock'
 
