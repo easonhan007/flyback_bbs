@@ -1,4 +1,4 @@
-FlybackBbs::App.controllers :home do
+FlybackBbs::App.controllers :categories do
   
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
@@ -19,9 +19,18 @@ FlybackBbs::App.controllers :home do
   #   'Hello world!'
   # end
   
-  get :index, map: '/' do
-    @categories = Category.order('created_at DESC').limit(5)    
-    render 'home/index'
+  get :show, with: :id do |id|
+    halt(404, 'Id should be an integer') unless /\d+/.match(id) 
+    begin 
+      @category = Category.find(id.to_i) 
+    rescue 
+      halt(404, "Can not find category which id = #{id}") 
+    end #begin
+    render 'categories/show'
+  end #show
+
+  get :index do
+
   end
 
 end

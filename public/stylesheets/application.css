@@ -2,6 +2,7 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  /*background-color: #eee;*/
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -16,6 +17,7 @@ body {
 .header {
   border-bottom: 1px solid #e5e5e5;
   background-color: white;
+  /*background-color: #eee;*/
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -67,8 +69,9 @@ body {
 .box {
   background: white;
   border-radius: 3px;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid #E2E2E9;
+  /*box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);*/
+  /*border-bottom: 1px solid #E2E2E9;*/
+  border: 1px solid #eee;
   margin-bottom: 20px;
 }
 
@@ -89,4 +92,9 @@ body {
 .ds {
 	color: #eeeeee;
 	padding: 0 1em 0 1em;
+}
+
+.user-icon {
+  width: 48px;
+  height: 48px;
 }

@@ -1,4 +1,4 @@
-FlybackBbs::App.controllers :home do
+FlybackBbs::App.controllers :users do
   
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
@@ -19,9 +19,22 @@ FlybackBbs::App.controllers :home do
   #   'Hello world!'
   # end
   
-  get :index, map: '/' do
-    @categories = Category.order('created_at DESC').limit(5)    
-    render 'home/index'
+  get :new do
+    @user = User.new
+    render 'users/new'
   end
+
+  post :create do
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:success] = 'Thank you for your register'
+      set_current_account(@user)
+      redirect(url(:home, :index)) 
+    else
+      flash.now[:error] = 'Failed'
+      render 'users/new'
+    end
+
+  end 
 
 end

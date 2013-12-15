@@ -1,0 +1,19 @@
+div class="box row"
+	- @category.articles.each do |article|
+		div class="cell row"
+			div class="col-md-2"
+				= image_tag('default_user.png', class: 'user-icon')	
+			div class="article col-md-10"
+				h4
+					a href='#' 
+						= article.title 			
+				div class='text-muted'
+					a href='#' =article.user.name
+					span class='ds' |
+					| posted &nbsp
+					= article.created_at.strftime('%m-%d %H:%M')
+					span class='ds' |
+					| last commentd by 
+					a href='#' =article.user.name
+
+	

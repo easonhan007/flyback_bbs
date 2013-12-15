@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
 	belongs_to :category
+	belongs_to :user, foreign_key: 'account_id'
 	has_many :comments
 
 	def add_comments(*cmts)

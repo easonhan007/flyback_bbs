@@ -21,9 +21,10 @@ html lang='en'
             a href='#' About
           li
             a href='#' Contact
+          li 
+            span = current_account.try(:email)
         h3 class='text-muted' FlyBack
-      div class='row box' id='content'
-        =yield
+      =yield
     hr
     footer
       p &copy; Flyback 2013
