@@ -1,0 +1,11 @@
+.row 
+	.col-md-6
+		a class="btn btn-primary" href="#" Create
+		
+div class="box row"
+	.article
+		= @article.content
+	- @article.comments.each do |comment|
+		.comments
+			= comment.content
+	
