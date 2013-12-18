@@ -23,6 +23,7 @@ FlybackBbs::App.controllers :categories do
     halt(404, 'Id should be an integer') unless /\d+/.match(id) 
     begin 
       @category = Category.find(id.to_i) 
+      @articles = Article.where(category_id: @category.id).order('commented_at DESC').page(params[:page]).per_page(1)
     rescue 
       halt(404, "Can not find category which id = #{id}") 
     end #begin

@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 # Distribute your app as a gem
 # gemspec
@@ -19,6 +20,8 @@ gem 'sass'
 gem 'slim'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'mysql2'
+gem 'will_paginate', :require => ['will_paginate/active_record', 'will_paginate/view_helpers/sinatra']
+gem 'will_paginate-bootstrap', :require => 'will_paginate-bootstrap'
 
 # Test requirements
 gem 'rspec', :group => 'test'

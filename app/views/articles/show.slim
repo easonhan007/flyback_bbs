@@ -3,9 +3,17 @@
 		a class="btn btn-primary" href="#" Create
 		
 div class="box row"
-	.article
-		= @article.content
-	- @article.comments.each do |comment|
-		.comments
-			= comment.content
+	div class='article'
+		div class='row article-header'
+			div class='col-md-10'
+				h3 = @article.title
+			div class='col-md-2 article-auther'
+				= image_tag('default_user.png', class: 'user-icon')	
+		div class='row article-content'	
+			p
+				= @article.content
+	- @comments.each do |comment|
+		.row
+			.comments
+				= comment.content
 	

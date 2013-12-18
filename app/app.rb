@@ -6,6 +6,7 @@ module FlybackBbs
     register Padrino::Mailer
     register Padrino::Helpers
     register Padrino::Admin::AccessControl
+    register WillPaginate::Sinatra
 
     enable :sessions
 

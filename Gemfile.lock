@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://ruby.taobao.org/
   specs:
     activemodel (3.2.16)
       activesupport (= 3.2.16)
@@ -87,6 +87,9 @@ GEM
     tzinfo (0.3.38)
     url_mount (0.2.1)
       rack
+    will_paginate (3.0.5)
+    will_paginate-bootstrap (1.0.0)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
@@ -101,3 +104,5 @@ DEPENDENCIES
   rspec
   sass
   slim
+  will_paginate
+  will_paginate-bootstrap

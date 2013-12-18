@@ -3,7 +3,7 @@
 		a class="btn btn-primary" href="#" Create
 
 div class="box row"
-	- @category.articles.each do |article|
+	- @articles.each do |article|
 		div class="cell row"
 			div class="col-md-2"
 				= image_tag('default_user.png', class: 'user-icon')	
@@ -19,5 +19,6 @@ div class="box row"
 					span class='ds' |
 					| last commentd by 
 					a href='#' =article.user.name
+= will_paginate @articles, renderer: BootstrapPagination::Sinatra
 
 	

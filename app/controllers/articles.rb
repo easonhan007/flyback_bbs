@@ -23,6 +23,7 @@ FlybackBbs::App.controllers :articles do
     halt(404, "Can not find article with id = #{id}") unless /\d+/.match(id)
     begin
       @article = Article.find(id)
+      @comments = Comment.where(article_id: @article.id).order('created_at DESC').page(params[:page])
     rescue
       halt(404, "Can not find article with id = #{id}") 
     end 
