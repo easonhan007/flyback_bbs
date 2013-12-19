@@ -8,7 +8,7 @@ div class='row box' id='content'
 			div class="articles col-md-10"
 				- article= cate.articles.order('commented_at').limit(1).first
 				h4
-					a href='#' 
+					a href=url_for(:articles, :show, id: article.id)
 						= article.title		 			
 				div class='text-muted'
 					a href='#' user
