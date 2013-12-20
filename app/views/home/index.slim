@@ -11,13 +11,16 @@ div class='row box' id='content'
 					a href=url_for(:articles, :show, id: article.id)
 						= article.title		 			
 				div class='text-muted'
-					a href='#' user
+					a href='#' =article.user.name
 					span class='ds' |
 					| posted &nbsp
 					= article.created_at.strftime('%m-%d %H:%M')
-					span class='ds' |
-					| last commentd by 
-					a href='#' user
+					- if article.commented_by
+						span class='ds' |
+						| last commentd by 
+						a href='#' =article.commented_by
+					- else
+						span class='label label-warning' style='margin-left: 1em' No replies
 
 	div class="cell topic row"
 		div class="category col-md-2"

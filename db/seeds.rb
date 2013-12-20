@@ -71,8 +71,8 @@ lucy.comments << comment3
 topic1.add_comments comment1, comment2, comment3
 comment4 = Comment.new(content: '5 years')
 # topic2.comments << comment4
-topic2.add_comments comment4
 lily.comments << comment4
+topic2.add_comments comment4
 
 # add a admin account
 admin = Account.new(name: 'admin', email: 'admin@test.com', password: 'admin', password_confirmation: 'admin', role: 'admin')

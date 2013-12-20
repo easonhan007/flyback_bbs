@@ -3,13 +3,19 @@
 		a class="btn btn-primary" href="#" Create
 		
 div class="row"
-	div class='article'
-		div class='row article-header'
-			div class='col-md-10'
-				h3 = @article.title
-			div class='col-md-2 article-auther'
-				= image_tag('default_user.png', class: 'user-icon')	
-		div class='row article-content'	
+	div class='row article-header'
+		div class='col-md-10'
+			h3 = @article.title
+			div class='text-muted base-info'
+				span =@article.user.name
+				span = ' - Posted ' +time_ago_in_words(@article.created_at) + ' ago'
+				- if @article.commented_at && @article.commented_by
+					span = ' - Replied ' + time_ago_in_words(@article.commented_at)
+					span = ' By ' + @article.commented_by
+		div class='col-md-2 article-auther'
+			= image_tag('default_user.png', class: 'user-icon')	
+	div class='row article-content'	
+		div class='col-md-12' 
 			p
 				= @article.content
 	- @comments.each_with_index do |comment, i|
@@ -23,11 +29,15 @@ div class="row"
 					span =time_ago_in_words(comment.created_at).concat(' ago') 
 				div class="comment-conent"
 					= comment.content
+
 	div class='row reply'
-		form method='post' action=url_for(:comments, :create)	  
-			.col-md-10
-				textarea class='form-control' rows='5'
-			.col-md-2
-				input type='submit' value='Submit' class='btn btn-primary'
+		- if logged_in?
+			form method='post' action=url_for(:comments, :create)	  
+				.col-md-10
+					textarea name='comment[content]' class='form-control' rows='5'
+				.col-md-2
+					input type='submit' value='Submit' class='btn btn-primary'
+		- else
+			a href='#' Login to reply
 
 	

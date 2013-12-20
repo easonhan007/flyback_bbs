@@ -16,14 +16,14 @@ html lang='en'
       .header
         ul class="nav nav-pills pull-right"
           li class="active" 
-            a href='#' Home
+            a href='/' Home
           li 
             a href='#' About
           li
             a href='#' Contact
           li 
             span = current_account.try(:email)
-        h3 class='text-muted' FlyBack
+        h3 class='text-info' FlyBack
       =yield
     hr
     footer

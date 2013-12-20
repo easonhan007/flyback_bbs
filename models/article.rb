@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
 	def add_comments(*cmts)
 		self.comments << cmts
 		self[:commented_at] = cmts.last.created_at
+		self[:commented_by] = cmts.last.user.name
 		save
 	end
 end
