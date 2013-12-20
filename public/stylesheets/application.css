@@ -131,3 +131,8 @@ body {
 .floor {
   margin: 0 1em;
 }
+
+.reply {
+  margin-top: 1em; 
+  padding: 1em;
+}

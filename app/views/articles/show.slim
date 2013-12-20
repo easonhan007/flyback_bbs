@@ -23,4 +23,11 @@ div class="row"
 					span =time_ago_in_words(comment.created_at).concat(' ago') 
 				div class="comment-conent"
 					= comment.content
+	div class='row reply'
+		form method='post' action=url_for(:comments, :create)	  
+			.col-md-10
+				textarea class='form-control' rows='5'
+			.col-md-2
+				input type='submit' value='Submit' class='btn btn-primary'
+
 	
