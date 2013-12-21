@@ -14,7 +14,6 @@ FlybackBbs::App.controllers :articles do
   # get :foo, :with => :id do
   #   'Maps to url '/foo/#{params[:id]}''
   # end
-
   # get '/example' do
   #   'Hello world!'
   # end
@@ -24,6 +23,8 @@ FlybackBbs::App.controllers :articles do
     begin
       @article = Article.find(id)
       @comments = Comment.where(article_id: @article.id).order('created_at DESC').page(params[:page])
+      make_breadcrumb(url_for(:categories, :show, id: @article.category.id), @article.category.name)
+      make_breadcrumb(@title = @article.title)
     rescue
       halt(404, "Can not find article with id = #{id}") 
     end 
