@@ -1,13 +1,16 @@
 .row 
-	.col-md-6
-		a class="btn btn-primary" href="#" Create
+	ol class='breadcrumb'
+		li 
+			a href='#' Home
+		li 
+			a href='#' Category
 
 div class="box row"
 	- @articles.each do |article|
 		div class="cell row"
-			div class="col-md-2"
+			div class="col-md-2 author"
 				= image_tag('default_user.png', class: 'user-icon')	
-			div class="article col-md-10"
+			div class="article col-md-9"
 				h4
 					a href= url_for(:articles, :show, id: article.id)
 						= article.title 			
