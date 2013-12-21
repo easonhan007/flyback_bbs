@@ -1,16 +1,12 @@
-FlybackBbs::Admin.controllers :sessions do
+FlybackBbs::App.controllers :sessions do
   get :new do
-    render "/sessions/new", nil, :layout => false
+    render "/sessions/new"
   end
 
   post :create do
     if account = Account.authenticate(params[:email], params[:password])
       set_current_account(account)
-      redirect url(:base, :index)
-    elsif Padrino.env == :development && params[:bypass]
-      account = Account.first
-      set_current_account(account)
-      redirect url(:base, :index)
+      redirect url(:home, :index)
     else
       params[:email], params[:password] = h(params[:email]), h(params[:password])
       flash[:error] = pat('login.error')

@@ -20,7 +20,16 @@ FlybackBbs::App.controllers :comments do
   # end
   
   post :create do
-    
+    @comment = Comment.new(params[:comment])
+    flash[:error] = @comment.errors[:content] unless @comment.valid?
+    current_account.comments << @comment
+    begin
+      article = Article.find(params[:article_id])
+      article.add_comments(@comment)
+      redirect url_for(:articles, :show, id: article.id)
+    rescue
+      redirect url_for(:home, :index)
+    end 
   end
 
 end

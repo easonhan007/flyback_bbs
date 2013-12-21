@@ -63,7 +63,6 @@ module FlybackBbs
     #
     before do
         init_breadcrumb
-        @current_account = Account.current
     end
 
     def init_breadcrumb

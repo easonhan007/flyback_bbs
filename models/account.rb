@@ -1,10 +1,9 @@
 class Account < ActiveRecord::Base
+  has_many :articles, foreign_key: 'account_id'
+  has_many :comments, foreign_key: 'account_id'
+  
   attr_accessor :password, :password_confirmation
-
-  class << self
-    attr_accessor :current
-  end
-
+  
   # Validations
   validates_presence_of     :email, :role
   validates_presence_of     :password,                   :if => :password_required
