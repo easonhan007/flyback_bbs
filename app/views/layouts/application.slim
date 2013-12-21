@@ -22,10 +22,16 @@ html lang='en'
           li
             a href='#' Contact
           li 
-            span = current_account.try(:email)
+            - if logged_in?
+              = current_account.try(:email)
+            - else
+              =link_to('Login', '/admin/sessions/new', class: 'text-warning', style: 'font-weight: bold') 
+
         h3 class='text-info' FlyBack
       =yield
     hr
     footer
-      p &copy; Flyback 2013
+      .row
+        div class='col-md-6 col-md-push-3' style='text-align: center'
+          ' &copy; Flyback BBS  #{Time.now.year}
     =javascript_include_tag (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/affix bootstrap/alert bootstrap/button bootstrap/carousel bootstrap/collapse bootstrap/dropdown  bootstrap/tooltip bootstrap/transition  bootstrap/modal bootstrap/popover bootstrap/scrollspy bootstrap/tab]), :application

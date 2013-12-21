@@ -61,5 +61,17 @@ module FlybackBbs
     #     render 'errors/505'
     #   end
     #
-  end
-end
+    before do
+        init_breadcrumb
+    end
+
+    def init_breadcrumb
+        @breadcrumb = [link_to('Home', url_for(:home, :index))]
+    end
+
+    def make_breadcrumb(url=nil, text)
+        @breadcrumb << (url ? link_to(text, url) : text)
+    end
+
+  end #App
+end #FlybackBbs

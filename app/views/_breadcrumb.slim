@@ -1,0 +1,7 @@
+.row
+	ol class='breadcrumb' style='background-color: white'
+		- @breadcrumb.each_with_index do |item, i|
+			-if (i == @breadcrumb.size - 1)
+				li class='active' =item
+			- else
+				li= item

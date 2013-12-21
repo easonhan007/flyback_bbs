@@ -6,10 +6,6 @@ module FlybackBbs
     register Padrino::Helpers
     register Padrino::Admin::AccessControl
 
-    before do
-        Account.current = current_account
-    end
-
     ##
     # Application configuration options
     #
