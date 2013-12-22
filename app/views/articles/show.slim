@@ -14,8 +14,7 @@ div class="row"
 			= image_tag('default_user.png', class: 'user-icon')	
 	div class='row article-content'	
 		div class='col-md-12' 
-			p
-				= @article.content
+			= to_md(@article.content).html_safe
 	- @comments.each_with_index do |comment, i|
 		div class='comments row'
 			div class="col-md-1"
@@ -26,7 +25,7 @@ div class="row"
 					span class='floor' =sprintf('#%d', i+1)
 					span =time_ago_in_words(comment.created_at).concat(' ago') 
 				div class="comment-conent"
-					= comment.content
+					= to_md(comment.content).html_safe
 
 	div class='row reply'
 		- if logged_in?

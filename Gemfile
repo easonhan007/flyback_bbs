@@ -22,6 +22,7 @@ gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'mysql2'
 gem 'will_paginate', :require => ['will_paginate/active_record', 'will_paginate/view_helpers/sinatra']
 gem 'will_paginate-bootstrap', :require => 'will_paginate-bootstrap'
+gem 'redcarpet', :require => 'redcarpet'
 
 # Test requirements
 gem 'rspec', :group => 'test'
