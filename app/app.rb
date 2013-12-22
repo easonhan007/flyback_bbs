@@ -63,6 +63,7 @@ module FlybackBbs
     #
     before do
         init_breadcrumb
+        @nav_category = Category.select('id, name').order('created_at DESC').limit(2).all
     end
 
     def init_breadcrumb

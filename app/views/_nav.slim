@@ -1,0 +1,17 @@
+.header
+  ul class="nav nav-pills pull-right"
+    li class="active" 
+      a href='/' Home
+    li
+    	     
+	  li
+	    -if logged_in?
+	      = link_to current_account.try(:name), '#'
+	    -else
+	      = link_to('Login', url_for(:sessions, :new), class: 'text-warning', style: 'font-weight: bold') 
+
+    - if logged_in?
+      li = button_to('logout', url_for(:sessions, :destroy), :method => :delete) do
+        = content_tag :button, 'logout', :type => :submit, :class => 'btn btn-default btn-sm', style: 'margin-top: 5px'
+
+  h3 class='text-info' FlyBack
