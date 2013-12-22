@@ -10,7 +10,7 @@
 		.form-group
 			span class='text-danger' *
 			=f.label :category_id
-			=f.select :category_id, class: 'form-control', collection: @category, fields: [:name, :id]
+			=f.select :category_id, class: 'form-control', collection: @categories, fields: [:name, :id]
 		.form-group
 			span class='text-danger' *
 			=f.label :content

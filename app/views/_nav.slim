@@ -1,9 +1,10 @@
 .header
   ul class="nav nav-pills pull-right"
-    li class="active" 
+    li class=('active' if request.path == '/')
       a href='/' Home
-    li
-    	     
+      - @nav_category.each do |c|
+        li class=('active' if c.id == @category.try(:id))
+          =link_to(c.name, url_for(:categories, :show, id: c.id))
 	  li
 	    -if logged_in?
 	      = link_to current_account.try(:name), '#'
@@ -14,4 +15,4 @@
       li = button_to('logout', url_for(:sessions, :destroy), :method => :delete) do
         = content_tag :button, 'logout', :type => :submit, :class => 'btn btn-default btn-sm', style: 'margin-top: 5px'
 
-  h3 class='text-info' FlyBack
+  h3 =link_to('Flyback', '/')

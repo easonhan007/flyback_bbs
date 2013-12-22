@@ -19,7 +19,7 @@ FlybackBbs::App.controllers :articles do
   # end
 
   before except: :show do
-    @category = Category.all
+    @categories = Category.all
     halt(401, "You should login") unless logged_in?
   end
   
@@ -27,6 +27,7 @@ FlybackBbs::App.controllers :articles do
     halt(404, "Can not find article with id = #{id}") unless /\d+/.match(id)
     begin
       @article = Article.find(id)
+      @category = @article.category
       @comments = Comment.where(article_id: @article.id).order('created_at ASC').page(params[:page])
       make_breadcrumb(url_for(:categories, :show, id: @article.category.id), @article.category.name)
       make_breadcrumb(@title = @article.title)
