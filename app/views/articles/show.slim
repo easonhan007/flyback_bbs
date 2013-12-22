@@ -1,6 +1,5 @@
 = partial :breadcrumb		
-.row
-  = flash_tag(:error, :class => "alert alert-danger", :bootstrap => true)
+
 div class="row"
 	div class='row article-header'
 		div class='col-md-10'
@@ -35,6 +34,7 @@ div class="row"
 				.col-md-10
 					textarea name='comment[content]' class='form-control' rows='5' placeholder='at least 10 charactors'
 					input type='hidden' name='article_id' value=@article.id
+					span class=''
 				.col-md-2
 					input type='submit' value='Submit' class='btn btn-primary'
 		- else

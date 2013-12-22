@@ -21,7 +21,7 @@ FlybackBbs::App.controllers :comments do
   
   post :create do
     @comment = Comment.new(params[:comment])
-    flash[:error] = @comment.errors[:content] unless @comment.valid?
+    flash[:danger] = @comment.errors[:content] unless @comment.valid?
     current_account.comments << @comment
     begin
       article = Article.find(params[:article_id])

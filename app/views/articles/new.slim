@@ -1,0 +1,21 @@
+= partial :breadcrumb		
+
+.row
+	=form_for @article, url_for(:articles, :create), method: 'post' do |f|
+		=f.error_messages(class: 'alert alert-danger')
+		.form-group
+			span class='text-danger' *
+			=f.label :title
+			=f.text_field :title, class: 'form-control', placeholder: 'required'
+		.form-group
+			span class='text-danger' *
+			=f.label :category_id
+			=f.select :category_id, class: 'form-control', collection: @category, fields: [:name, :id]
+		.form-group
+			span class='text-danger' *
+			=f.label :content
+			=f.text_area :content, class: 'form-control', rows: '10', placeholder:'required'
+		.form-group
+			=f.submit 'Create', class: 'btn btn-primary'
+
+

@@ -17,6 +17,11 @@ FlybackBbs::App.controllers :articles do
   # get '/example' do
   #   'Hello world!'
   # end
+
+  before except: :show do
+    @category = Category.all
+    halt(401, "You should login") unless logged_in?
+  end
   
   get :show, with: :id do |id|
     halt(404, "Can not find article with id = #{id}") unless /\d+/.match(id)
@@ -31,5 +36,24 @@ FlybackBbs::App.controllers :articles do
 
     render 'articles/show'
   end
+
+  get :new do
+    make_breadcrumb(@title = 'Create topic')
+    @article = Article.new
+    render 'articles/new'
+  end #new
+
+  post :create do
+    @article = Article.new(params[:article])
+    if @article.save
+      current_account.articles << @article
+      flash[:success] = 'Create Successfully'
+      redirect(url_for(:articles, :show, :id => @article.id))
+    else
+      flash.now[:danger] = 'Failed'
+      render 'articles/new'
+    end
+
+  end #create
 
 end

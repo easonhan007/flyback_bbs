@@ -31,6 +31,8 @@ html lang='en'
               = content_tag :button, 'logout', :type => :submit, :class => 'btn btn-default btn-sm', style: 'margin-top: 5px'
 
         h3 class='text-info' FlyBack
+      .row
+        = [:danger, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe
       =yield
     hr
     footer style='text-align: center'
