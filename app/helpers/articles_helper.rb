@@ -20,4 +20,5 @@ FlybackBbs::App.helpers do
   	markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(md_render_opts), md_extensions)
   	markdown.render(text)
   end
+
 end

@@ -38,6 +38,17 @@ FlybackBbs::App.controllers :articles do
     render 'articles/show'
   end
 
+  get :edit, with: :id do |id|
+    make_breadcrumb(@title = 'Edit topic')
+    # begin
+      @article = Article.find(id)
+      halt(401, 'You have no permission to edit this article') unless (current_account.owner_of?(@article) || current_account.admin?)
+      render('articles/new')
+    # rescue Exception => e
+    #   halt(404, "Can not find article with id = #{id}") 
+    # end
+  end
+
   get :new do
     make_breadcrumb(@title = 'Create topic')
     @article = Article.new
@@ -54,7 +65,22 @@ FlybackBbs::App.controllers :articles do
       flash.now[:danger] = 'Failed'
       render 'articles/new'
     end
-
   end #create
+
+  put :update do
+    @article = Article.find(params[:id])
+    if @article
+      if @article.update_attributes(params[:article])
+        flash[:success] = 'Update Successfully' 
+        redirect(url(:articles, :show, :id => @article.id))
+      else
+        flash.now[:danger] = 'Update Failed'
+        render 'articles/new'
+      end
+    else
+      flash[:warning] = pat(:update_warning, :model => 'article', :id => "#{params[:id]}")
+      halt 404
+    end
+  end
 
 end

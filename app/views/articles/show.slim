@@ -15,6 +15,11 @@ div class="row"
 	div class='row article-content'	
 		div class='col-md-12' 
 			= to_md(@article.content).html_safe
+			-if current_account && (current_account.owner_of?(@article) || current_account.admin?)
+				.action.pull-right
+					=link_to 'Edit', '#'
+					span.ds |
+					=link_to 'Delete', '#'
 	- @comments.each_with_index do |comment, i|
 		div class='comments row'
 			div class="col-md-1"

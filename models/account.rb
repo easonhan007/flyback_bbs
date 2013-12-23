@@ -30,6 +30,14 @@ class Account < ActiveRecord::Base
     ::BCrypt::Password.new(crypted_password) == password
   end
 
+  def admin?
+    self[:role] == 'admin'
+  end
+
+  def owner_of?(article_or_comment)
+    self[:id] == article_or_comment.try(:user).try(:id)
+  end
+
   private
     def encrypt_password
       self.crypted_password = ::BCrypt::Password.create(password)

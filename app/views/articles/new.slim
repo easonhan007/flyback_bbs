@@ -1,9 +1,13 @@
 = partial :breadcrumb		
 
 .row
-	=form_for @article, url_for(:articles, :create), method: 'post' do |f|
+	- if request.path.include?('edit') ? 'put': 'post'
+	- a =request.path.include?('edit') ? 'update': 'create'
+	/=form_for @article, url_for(:articles, (request.path.include?('edit') ? 'update': 'create' ).to_sym), method: m do |f|
+	=form_for @article, url_for(:articles, a.to_sym), method: m do |f|
 		=f.error_messages(class: 'alert alert-danger')
-		.form-group
+		=f.hidden_field :id
+		.form-group 
 			span class='text-danger' *
 			=f.label :title
 			=f.text_field :title, class: 'form-control', placeholder: 'required'
