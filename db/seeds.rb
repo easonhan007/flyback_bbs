@@ -63,13 +63,13 @@ c.articles << [topic1, topic2]
 lucy.articles << [topic1, topic2]
 
 shell.say 'Add comment to topic'
-comment1 = Comment.new(content: 'ruby is beautiful')
-comment2 = Comment.new(content: 'I agree')
+comment1 = Comment.new(content: 'ruby is beautiful, but it is a little slow')
+comment2 = Comment.new(content: 'I agree, this is very great')
 comment3 = Comment.new(content: 'ROR works great, I like it')
 eason.comments << [comment1, comment2]
 lucy.comments << comment3
 topic1.add_comments comment1, comment2, comment3
-comment4 = Comment.new(content: '5 years')
+comment4 = Comment.new(content: '5 years, I need relpy 10 chars')
 # topic2.comments << comment4
 lily.comments << comment4
 topic2.add_comments comment4
