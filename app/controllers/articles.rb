@@ -43,7 +43,7 @@ FlybackBbs::App.controllers :articles do
     # begin
       @article = Article.find(id)
       halt(401, 'You have no permission to edit this article') unless (current_account.owner_of?(@article) || current_account.admin?)
-      render('articles/new')
+      render('articles/edit')
     # rescue Exception => e
     #   halt(404, "Can not find article with id = #{id}") 
     # end
@@ -68,19 +68,19 @@ FlybackBbs::App.controllers :articles do
   end #create
 
   put :update do
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:article]['id'])
     if @article
       if @article.update_attributes(params[:article])
         flash[:success] = 'Update Successfully' 
         redirect(url(:articles, :show, :id => @article.id))
       else
         flash.now[:danger] = 'Update Failed'
-        render 'articles/new'
-      end
+        render 'articles/edit'
+      end #if
     else
       flash[:warning] = pat(:update_warning, :model => 'article', :id => "#{params[:id]}")
-      halt 404
+      halt 404, 'update failed'
     end
-  end
+  end #update
 
 end

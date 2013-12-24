@@ -16,7 +16,6 @@ FlybackBbs::App.controllers :sessions do
 
   delete :destroy do
     set_current_account(nil)
-    Account.current = nil
     redirect url(:sessions, :new)
   end
 end
