@@ -1,6 +1,7 @@
 - error = @user.errors.include?(:name)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :name, :class => 'control-label'
+    span class="text-danger" *
   div class='controls'
     = f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
     span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : ''
@@ -26,5 +27,5 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
     = f.password_field :password_confirmation, :class => 'form-control input-large input-with-feedback'
     span class='help-inline' = error ? f.error_message_on(:password_confirmation, :class => 'text-error') : ''
 
-div class="form-actions"
-  = f.submit 'Save', :class => 'btn btn-primary'
+div style='margin-top: 1em'
+  = f.submit 'Create User', :class => 'btn btn-primary'

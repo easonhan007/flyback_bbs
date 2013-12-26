@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
   attr_accessor :password, :password_confirmation
   
   # Validations
-  validates_presence_of     :email, :role
+  validates_presence_of     :email, :role, :name
   validates_presence_of     :password,                   :if => :password_required
   validates_presence_of     :password_confirmation,      :if => :password_required
   validates_length_of       :password, :within => 4..40, :if => :password_required
