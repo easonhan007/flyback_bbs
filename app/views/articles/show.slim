@@ -1,23 +1,7 @@
 = partial :breadcrumb		
 
 div class="row"
-	div class='row article-header'
-		div class='col-md-10'
-			h3 == @article.title
-			div class='text-muted base-info'
-				span =@article.user.name
-				span = ' - Posted ' +time_ago_in_words(@article.created_at) + ' ago'
-				- if @article.commented_at && @article.commented_by
-					span = ' - Replied ' + time_ago_in_words(@article.commented_at)
-					span = ' By ' + @article.commented_by
-		div class='col-md-2 article-author'
-			= image_tag('default_user.png', class: 'user-icon')	
-	div class='row article-content'	
-		div class='col-md-12' 
-			= to_md(@article.content).html_safe
-			-if admin_or_owner_of?(@article)
-				.action.pull-right
-					=link_to 'Edit', url_for(:articles, :edit, id: @article.id)
+	=partial 'articles/article'
 	- @comments.each_with_index do |comment, i|
 		div class='comments row'
 			div class="col-md-1"
@@ -31,7 +15,7 @@ div class="row"
 					= to_md(comment.content).html_safe
 				-if admin_or_owner_of?(comment)
 					.pull-right
-						=link_to('Edit', '#')
+						=link_to('Edit', url(:comments, :edit, id: comment.id))
 
 	div class='row reply'
 		- if logged_in?

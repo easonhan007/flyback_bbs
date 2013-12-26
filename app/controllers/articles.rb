@@ -78,7 +78,6 @@ FlybackBbs::App.controllers :articles do
         render 'articles/edit'
       end #if
     else
-      flash[:warning] = pat(:update_warning, :model => 'article', :id => "#{params[:id]}")
       halt 404, 'update failed'
     end
   end #update
