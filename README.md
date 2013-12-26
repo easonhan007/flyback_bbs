@@ -1,4 +1,5 @@
 === TODO
 
 * ~~edit comment~~
-* user register
+* ~~user register~~
+* disable user
