@@ -1,4 +1,4 @@
 === TODO
 
-* edit comment
+* ~~edit comment~~
 * user register
