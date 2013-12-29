@@ -2,4 +2,5 @@
 
 * ~~edit comment~~
 * ~~user register~~
-* disable user
+* ~~disable user~~
+* site setting

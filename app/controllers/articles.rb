@@ -21,6 +21,7 @@ FlybackBbs::App.controllers :articles do
   before except: :show do
     @categories = Category.all
     halt(401, "You should login") unless logged_in?
+    halt(403, 'You are disabled') unless current_account.active?
   end
   
   get :show, with: :id do |id|

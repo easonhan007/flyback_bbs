@@ -18,6 +18,11 @@ FlybackBbs::App.controllers :comments do
   # get '/example' do
   #   'Hello world!'
   # end
+
+  before do
+    halt(401, "You should login") unless logged_in?
+    halt(403, 'You are disabled') unless current_account.active?
+  end
   
   post :create do
     @comment = Comment.new(params[:comment])
@@ -33,15 +38,15 @@ FlybackBbs::App.controllers :comments do
   end
 
   get :edit, with: :id do |id|
-    # begin
+    begin
       @comment = Comment.find(id)
       @article = @comment.article
       make_breadcrumb(url_for(:categories, :show, id: @article.category.id), @article.category.name)
       make_breadcrumb(@title = 'Edit Comment')
       render('comments/edit')
-    # rescue
-      # halt(404, 'Can not find comment with id = ' + id)
-    # end
+    rescue
+      halt(404, 'Can not find comment with id = ' + id)
+    end
   end
 
   put :update do

@@ -6,13 +6,13 @@ FlybackBbs::App.helpers do
   # end
   def md_extensions
   	{:space_after_headers => true,
-	 :tables => true}
+  	 :tables => true}
   end 
 
   def md_render_opts
   	{:filter_html => true,
-	 :no_styles => true,
-	 :safe_links_only => true,
+     :no_styles => true,
+  	 :safe_links_only => true,
   	 :hard_wrap => true}
   end
 
@@ -22,7 +22,9 @@ FlybackBbs::App.helpers do
   end
 
   def admin_or_owner_of?(article_or_comment)
-    current_account && (current_account.owner_of?(article_or_comment) || current_account.admin?)
+    current_account && 
+    current_account.active? && 
+    (current_account.owner_of?(article_or_comment) || current_account.admin?)
   end
 
 end

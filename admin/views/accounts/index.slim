@@ -33,10 +33,10 @@ div class="tabs-content"
 
     tbody
       -@accounts.each do |account|
-        tr class='list-row'
+        tr class="list-row #{'text-muted' unless account.active?}"
           td class='list-column list-selectable' = check_box_tag 'account_ids[]', :value => account.id, :class => 'list-selectable-checkbox'
           td class='list-column' = account.id
-          td class='list-column' = account.name
+          td class="list-column" = account.name
           td class='list-column' = account.surname
           td class='list-column' = account.email
           td class='list-column list-row-action'
