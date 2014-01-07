@@ -40,6 +40,16 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :active, :class => 'control-label'
   div class='controls'
     = f.check_box :active, uncheck_value: 'false'
+- error = @account.errors.include?(:top)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :top, :class => 'control-label'
+  div class='controls'
+    = f.check_box :top, uncheck_value: 'false'
+- error = @account.errors.include?(:great)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :great, :class => 'control-label'
+  div class='controls'
+    = f.check_box :great, uncheck_value: 'false'
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'

@@ -1,6 +1,6 @@
 div class='row article-header'
 	div class='col-md-10'
-		h3 == @article.title
+		h3 == @article.title_with_more_info
 		div class='text-muted base-info'
 			span =@article.user.name
 			span = ' - Posted ' +time_ago_in_words(@article.created_at) + ' ago'

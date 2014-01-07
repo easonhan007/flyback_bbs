@@ -17,6 +17,17 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
     = f.text_field :category_id, :class => 'form-control input-large input-with-feedback'
     span class='help-inline' = error ? f.error_message_on(:category_id, :class => 'text-error') : pat(:example)
 
+- error = @article.errors.include?(:top)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :top, :class => 'control-label'
+  div class='controls'
+    = f.check_box :top, uncheck_value: 'false'
+- error = @article.errors.include?(:great)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :great, :class => 'control-label'
+  div class='controls'
+    = f.check_box :great, uncheck_value: 'false'
+
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'
   |&nbsp;

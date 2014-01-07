@@ -1,7 +1,11 @@
 = partial 'breadcrumb'
 
 .hat.row
-	h4.text-muted=@category.name
+	h4.text-muted 
+		=@category.name
+		- if current_account
+			=link_to('Create topic', url_for(:articles, :new), class: 'pull-right text-warning')
+
 div class="box row"
 	- @articles.each do |article|
 		div class="cell row"
@@ -9,8 +13,8 @@ div class="box row"
 				= image_tag('default_user.png', class: 'user-icon')	
 			div class="article col-md-9"
 				h4
-					a href= url_for(:articles, :show, id: article.id)
-						= article.title 			
+					a class="#{article.top? ? 'text-warning' : ''}" href= url_for(:articles, :show, id: article.id)
+						= article.title_with_more_info 			
 				div class='text-muted'
 					a href='#' =article.user.name
 					span class='ds' |

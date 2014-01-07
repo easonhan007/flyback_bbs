@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Article < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :user, foreign_key: 'account_id'
@@ -13,4 +14,12 @@ class Article < ActiveRecord::Base
 		self[:commented_by] = cmts.last.user.name
 		save
 	end
+
+	def title_with_more_info
+		title = self[:title]
+		title = '[精]' + title if self[:great]
+		title = '[置顶]' + title if self[:top]
+		title
+	end
+
 end
