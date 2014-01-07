@@ -59,6 +59,8 @@ c = Category.create(name: 'ruby', description: 'group for ruby topics')
 shell.say 'Add topics for ruby'
 topic1 = Article.new(title: 'Why ruby is great', content: 'why ruby is greate')
 topic2 = Article.new(title: 'How long do you use ruby', content: 'How long do you use ruby')
+topic2.great = true
+topic2.top = true
 c.articles << [topic1, topic2]
 lucy.articles << [topic1, topic2]
 
