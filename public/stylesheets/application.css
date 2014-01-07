@@ -20,11 +20,15 @@ body {
   /*background-color: white;*/
   background-color: #eee;
 }
+.row {
+  margin: 0;
+}
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
-  line-height: 40px;
+  line-height: 35px;
   padding-bottom: 19px;
 }
 
