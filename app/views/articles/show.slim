@@ -18,7 +18,7 @@ div class="row"
 						=link_to('Edit', url(:comments, :edit, id: comment.id))
 
 	div class='row reply'
-		- if logged_in? && current_account.active?
+		- if logged_in? && current_account && current_account.active?
 			=form_tag url_for(:comments, :create), method: 'post'
 				.col-md-10
 					textarea name='comment[content]' class='form-control' rows='5' placeholder='at least 10 charactors'
@@ -27,7 +27,7 @@ div class="row"
 				.col-md-2
 					input type='submit' value='Submit' class='btn btn-primary'
 		- else
-			-if current_account.active?
+			-unless current_account
 				a href='#' Login to reply
 			-else
 				span.text-warning You are disabled by admin

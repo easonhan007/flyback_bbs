@@ -1,5 +1,7 @@
 = partial 'breadcrumb'
 
+.hat.row
+	h4.text-muted=@category.name
 div class="box row"
 	- @articles.each do |article|
 		div class="cell row"
