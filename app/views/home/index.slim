@@ -1,24 +1,29 @@
+.hat.row
+	h4.text-muted 
+		|最新帖子
+		- if current_account
+			=link_to('Create topic', url_for(:articles, :new), class: 'pull-right text-warning')
+
 div class='row box' id='content'
-	-@categories.each do |cate|
+	-@articles.each do |art|
 		div class="cell topic row"
 			div class="category col-md-2"
 				h3 
-					a href=url_for(:categories, :show, id: cate.id) 
-						= cate.name
+					a href=url_for(:categories, :show, id: art.category_id) 
+						= art.category.name
 			div class="articles col-md-10"
-				- article= cate.articles.order('commented_at').limit(1).first
 				h4
-					a href=url_for(:articles, :show, id: article.id)
-						= article.title		 			
+					a href=url_for(:articles, :show, id: art.id)
+						= art.title		 			
 				div class='text-muted'
-					a href='#' =article.user.name
+					a href='#' =art.user.name
 					span class='ds' |
 					| posted &nbsp
-					= article.created_at.strftime('%m-%d %H:%M')
-					- if article.commented_by
+					= art.created_at.strftime('%m-%d %H:%M')
+					- if art.commented_by
 						span class='ds' |
 						| last commentd by 
-						a href='#' =article.commented_by
+						a href='#' =art.commented_by
 					- else
 						span class='label label-warning' style='margin-left: 1em' No replies
 
