@@ -6,5 +6,6 @@ vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
 db/*.db
+db/seeds.rb
 .*.sw*
 config/database.rb
