@@ -32,4 +32,8 @@ div class="row"
 			-else
 				span.text-warning You are disabled by admin
 
-	
+javascript:	
+	$('document').ready(function(){
+		$('.comments').first().css('border-top', '1px solid #ccc').css('border-top-left-radius', '3px').css('border-top-right-radius', '3px');
+		$('.comments').last().css('border-bottom-left-radius', '3px').css('border-bottom-right-radius', '3px');
+	});
