@@ -21,7 +21,7 @@ FlybackBbs::App.controllers :home do
   
   get :index, map: '/' do
     # @categories = Category.order('created_at DESC').limit(5)    
-    @articles = Article.order('created_at DESC, commented_at DESC').limit(10)
+    @articles = Article.order('commented_at DESC, created_at DESC').limit(10)
     render 'home/index'
   end
 
