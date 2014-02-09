@@ -28,7 +28,7 @@ div class="row"
 					input type='submit' value='Submit' class='btn btn-primary'
 		- else
 			-unless current_account
-				a href='#' Login to reply
+				=link_to('Login in to reply', url_for(:sessions, :new), class: 'login-url')
 			-else
 				span.text-warning You are disabled by admin
 
