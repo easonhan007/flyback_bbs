@@ -22,4 +22,13 @@ class Article < ActiveRecord::Base
 		title
 	end
 
+	# when create a new post 
+	# make sure last commenter is the creator
+	# make sure last commented at is current timestamp
+	def set_last_commentor_and_last_commented_at user
+		return unless user.is_a?(Account)
+		self[:commented_by] = user.name
+		self[:commented_at] = self[:created_at]
+	end
+
 end

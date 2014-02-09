@@ -58,6 +58,7 @@ FlybackBbs::App.controllers :articles do
 
   post :create do
     @article = Article.new(params[:article])
+    @article.set_last_commentor_and_last_commented_at(current_account)
     if @article.save
       current_account.articles << @article
       flash[:success] = 'Create Successfully'
