@@ -28,7 +28,7 @@ class Article < ActiveRecord::Base
 	def set_last_commentor_and_last_commented_at user
 		return unless user.is_a?(Account)
 		self[:commented_by] = user.name
-		self[:commented_at] = self[:created_at]
+		self[:commented_at] = Time.now
 	end
 
 end
