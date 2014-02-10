@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "active",           :default => true
+  end
+
+  create_table "answers", :force => true do |t|
+    t.text     "content"
+    t.integer  "account_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "articles", :force => true do |t|
@@ -50,6 +58,36 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "updated_at", :null => false
     t.integer  "account_id"
     t.integer  "article_id"
+  end
+
+  create_table "courses", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.date     "start_time"
+    t.text     "detail"
+    t.boolean  "active",      :default => true
+  end
+
+  create_table "questions", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "selected_courses", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "course_id"
+    t.boolean  "paid",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "tests", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

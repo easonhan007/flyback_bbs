@@ -1,8 +1,11 @@
 class Account < ActiveRecord::Base
   has_many :articles, foreign_key: 'account_id'
   has_many :comments, foreign_key: 'account_id'
+  has_many :selected_courses
+  has_many :courses, through: :selected_courses
+  has_many :answers
   
-  attr_accessor :password, :password_confirmation
+  attr_accessor :password, :password_confirmation, :all_courses
   
   # Validations
   validates_presence_of     :email, :role, :name
@@ -36,6 +39,12 @@ class Account < ActiveRecord::Base
 
   def owner_of?(article_or_comment)
     self[:id] == article_or_comment.try(:user).try(:id)
+  end
+
+  def course_selected?(course)
+    return false unless course.is_a?(Course)
+    c_ids = courses.map {|c| c.id}
+    c_ids.include?(course.id)
   end
 
   private

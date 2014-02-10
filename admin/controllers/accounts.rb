@@ -1,3 +1,4 @@
+#encoding: utf-8
 FlybackBbs::Admin.controllers :accounts do
   get :index do
     @title = "Accounts"
@@ -39,6 +40,15 @@ FlybackBbs::Admin.controllers :accounts do
     @title = pat(:update_title, :model => "account #{params[:id]}")
     @account = Account.find(params[:id])
     if @account
+      # 清空所有选择的课程
+      @account.selected_courses.each { |c| c.destroy }
+      if params[:account][:all_courses]
+        # 保存选择的课程
+        params[:account][:all_courses].each do |course_id|
+          course = Course.find(course_id)
+          course.accounts << @account unless @account.course_selected?(course)
+        end #each
+      end #if
       if @account.update_attributes(params[:account])
         flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?

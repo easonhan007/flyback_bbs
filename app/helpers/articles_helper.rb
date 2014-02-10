@@ -27,4 +27,5 @@ FlybackBbs::App.helpers do
     (current_account.owner_of?(article_or_comment) || current_account.admin?)
   end
 
+
 end

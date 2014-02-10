@@ -40,16 +40,16 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :active, :class => 'control-label'
   div class='controls'
     = f.check_box :active, uncheck_value: 'false'
-- error = @account.errors.include?(:top)
-fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :top, :class => 'control-label'
-  div class='controls'
-    = f.check_box :top, uncheck_value: 'false'
-- error = @account.errors.include?(:great)
-fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :great, :class => 'control-label'
-  div class='controls'
-    = f.check_box :great, uncheck_value: 'false'
+/ 选择的课程    
+-Course.all.each do |c|
+  fieldset class='control-group#{error ? ' has-error' : ''}'
+    = f.label c.name, :class => 'control-label'
+    div class='controls'
+      - ops = {value: c.id, id: "course_#{c.id}"}
+      - if @account.course_selected?(c) 
+        - ops[:checked] = 'checked'
+      /= check_box_tag 'account[all_courses][]', value: c.id, id: "course_#{c.id}"
+      = check_box_tag 'account[all_courses][]', ops
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'

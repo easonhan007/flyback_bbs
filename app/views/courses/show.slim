@@ -1,0 +1,8 @@
+h2
+	=@course.name
+	small=@course.description
+
+p class='text-muted'="开课时间:#{@course.start_time}"
+p class='text-info'=status_word_for_course(@course)
+.course-content
+	==to_md(@course.detail) if @course.detail

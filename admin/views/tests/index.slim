@@ -1,6 +1,6 @@
 ul class="nav nav-tabs"
-  li class="active" = link_to tag_icon(:list, pat(:list)), url(:accounts, :index)
-  li = link_to tag_icon(:plus, pat(:new)), url(:accounts, :new)
+  li class="active" = link_to tag_icon(:list, pat(:list)), url(:tests, :index)
+  li = link_to tag_icon(:plus, pat(:new)), url(:tests, :new)
 
 div class="tabs-content"
   table class="table table-striped table-hover table-condensed" id="list"
@@ -21,34 +21,32 @@ div class="tabs-content"
                   div class='arrow'
                   h3 class='popover-title' = pat(:delete_selected_title)
                   div class='popover-content'
-                    - form_tag url(:accounts, :destroy_many), :method => :delete do
-                      = hidden_field_tag :account_ids, :'data-delete-many-ids' => true
+                    - form_tag url(:tests, :destroy_many), :method => :delete do
+                      = hidden_field_tag :test_ids, :'data-delete-many-ids' => true
                       = submit_tag  pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       div class='btn btn-default btn-small cancel' = pat(:cancel)
-        th class='header' = mat(:account, :id)
-        th class='header' = mat(:account, :name)
-        th class='header' = mat(:account, :surname)
-        th class='header' = mat(:account, :email)
-        th class='header' = mat(:account, :courses)
+        th class='header' = mat(:test, :id)
+        th class='header' = mat(:test, :name)
+        th class='header' = mat(:test, :created_at)
+        th class='header' = mat(:test, :updated_at)
         th class='header list-row-action-header'
 
     tbody
-      -@accounts.each do |account|
-        tr class="list-row #{'text-muted' unless account.active?}"
-          td class='list-column list-selectable' = check_box_tag 'account_ids[]', :value => account.id, :class => 'list-selectable-checkbox'
-          td class='list-column' = account.id
-          td class="list-column" = account.name
-          td class='list-column' = account.surname
-          td class='list-column' = account.email
-          td class='list-column' = account.courses.map {|c| c.name}.join(',')
+      -@tests.each do |test|
+        tr class='list-row'
+          td class='list-column list-selectable' = check_box_tag 'test_ids[]', :value => test.id, :class => 'list-selectable-checkbox'
+          td class='list-column' = test.id
+          td class='list-column' = test.name
+          td class='list-column' = time_ago_in_words test.created_at
+          td class='list-column' = time_ago_in_words test.updated_at
           td class='list-column list-row-action'
             div class='list-row-action-wrapper'
-              = link_to tag_icon(:edit), :href => url(:accounts, :edit, :id => account.id), :rel => :tooltip, :title => "#{pat(:edit)} account", :class => 'list-row-action-wrapper-link'
-              = link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} account", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              = link_to tag_icon(:edit), :href => url(:tests, :edit, :id => test.id), :rel => :tooltip, :title => "#{pat(:edit)} test", :class => 'list-row-action-wrapper-link'
+              = link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} test", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
               div class='popover list-row-action-popover-delete-one left'
                 div class='arrow'
-                h3 class='popover-title' = pat(:delete, :model => "account")
+                h3 class='popover-title' = pat(:delete, :model => "test")
                 div class='popover-content'
-                  - form_tag url(:accounts, :destroy, :id => account.id), :method => :delete do
+                  - form_tag url(:tests, :destroy, :id => test.id), :method => :delete do
                     = submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
                     div class='btn btn-default btn-small cancel' = pat(:cancel)
