@@ -59,7 +59,7 @@ FlybackBbs::App.controllers :courses do
   end
 
   post :create_answer do 
-    if params[:answer][:id]
+    unless params[:answer][:id].blank?
       @answer = Answer.find(params[:answer][:id])
       @answer.content = params[:answer][:content]
     else
