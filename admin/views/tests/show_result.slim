@@ -6,4 +6,7 @@ h4
 		.test-result
 			.text-info
 				==to_md(a.question.content)
-			==to_md(a.content)
+			.answer-content
+				pre
+					code
+						=a.content.html_safe
