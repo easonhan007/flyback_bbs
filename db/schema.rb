@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 17) do
     t.text     "content"
     t.integer  "account_id"
     t.integer  "question_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "test_result_id"
   end
 
   create_table "articles", :force => true do |t|
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(:version => 17) do
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "test_id"
   end
 
   create_table "selected_courses", :force => true do |t|
@@ -84,10 +86,20 @@ ActiveRecord::Schema.define(:version => 17) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "test_results", :force => true do |t|
+    t.string   "content"
+    t.boolean  "passed"
+    t.integer  "account_id"
+    t.integer  "test_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tests", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "course_id"
   end
 
 end

@@ -1,0 +1,9 @@
+h4
+	= @result.account.name + '  '
+	small="于#{to_date_time @result.updated_at}完成"
+-unless @answers.blank?
+	-@answers.each do |a|
+		.test-result
+			.text-info
+				==to_md(a.question.content)
+			==to_md(a.content)

@@ -1,0 +1,15 @@
+h3=@test.name
+
+
+-@questions.each do |q|
+	.question
+		==to_md(q.content)
+		- answer = q.answer_of_user(current_account)
+		= form_for(answer, url_for(:courses, :create_answer), method: 'post') do |f|
+			=f.text_area(:content, class: 'form-control', rows: '10', placeholder: '在这里填写答案')
+			=f.hidden_field(:account_id)
+			=f.hidden_field(:question_id)
+			=f.hidden_field(:id)
+			=f.submit('提交答案', class: 'btn btn-primary')
+			-unless answer.new_record?
+				span class='pull-right text-muted update-info'="#{current_account.name}编辑于#{to_date_time answer.updated_at}"

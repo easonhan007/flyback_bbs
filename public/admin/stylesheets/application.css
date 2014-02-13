@@ -345,3 +345,9 @@ footer p {
   }
 }
 /* -- End Application -- */
+.test-result {
+  border-radius: 3px; 
+  background-color: #eff6fa;
+  margin: 1em 0 1em 0;
+  padding: 1em;
+}

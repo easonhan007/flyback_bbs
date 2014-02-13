@@ -1,0 +1,19 @@
+- error = @question.errors.include?(:content)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :content, :class => 'control-label'
+  div class='controls'
+    = f.text_area :content, :class => 'form-control input-large input-with-feedback', :autofocus => true, rows: '15'
+    span class='help-inline' = error ? f.error_message_on(:content, :class => 'text-error') : pat(:example)
+- error = @question.errors.include?(:test_id)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :test_id, :class => 'control-label'
+  div class='controls'
+    = f.select :test_id, collection: @tests, fields: [:name, :id], :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:test_id, :class => 'text-error') : pat(:example)
+
+div class="form-actions"
+  = f.submit pat(:save), :class => 'btn btn-primary'
+  |&nbsp;
+  = f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  |&nbsp;
+  = link_to pat(:cancel), url(:questions, :index), :class => 'btn btn-default'

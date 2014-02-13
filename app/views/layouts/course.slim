@@ -21,7 +21,10 @@ html lang='en'
             li class='active' 
               a href='#' 课程简介
             li  
-              a href='#' 我的课程
+              a href=url_for(:courses, :mine) 我的课程
+            li 
+              =link_to('Login', url_for(:sessions, :new))
+          p class='navbar-text navbar-right'="Welcome #{current_account.name}"
     .container.main-content
       .row
         = [:danger, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe

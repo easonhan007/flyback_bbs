@@ -1,3 +1,4 @@
+#encoding: utf-8
 FlybackBbs::Admin.controllers :tests do
   get :index do
     @title = "Tests"
@@ -8,7 +9,25 @@ FlybackBbs::Admin.controllers :tests do
   get :new do
     @title = pat(:new_title, :model => 'test')
     @test = Test.new
+    @courses = Course.order('created_at DESC').all
     render 'tests/new'
+  end
+
+  get :show, with: :id do
+    @test = Test.find(params[:id]) rescue halt(404, 'Can not find test with id ' + params[:id].to_s)
+    @test_results = @test.test_results
+    #未完成人员名单
+    all_students = @test.course.accounts.map {|a| a.name}
+    finishd_students = @test_results.map {|r| r.account.name}
+    @rest_students = all_students - finishd_students
+    render 'tests/show'
+  end 
+
+  get :show_result, with: :id do
+    @result = TestResult.find(params[:id]) rescue halt(404, 'Can not find result with id ' + params[:id].to_s)
+    @answers = @result.answers
+
+    render 'tests/show_result'
   end
 
   post :create do
@@ -27,6 +46,7 @@ FlybackBbs::Admin.controllers :tests do
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "test #{params[:id]}")
     @test = Test.find(params[:id])
+    @courses = Course.order('created_at DESC').all
     if @test
       render 'tests/edit'
     else

@@ -1,0 +1,24 @@
+- unless @courses.blank?
+	- @courses.each do |c|
+		.panel.panel-info
+			.panel-heading
+				=link_to c.name, url_for(:courses, :show, id: c.id)
+			.panel-body
+			- unless c.tests.blank?
+				table class='table'
+					thead
+						tr
+							th 名称
+							th 状态
+							th 操作
+					tbody
+						- c.tests.each do |test|
+							tr
+								td=test.name
+								td=test.name
+								td=link_to('进行考试', url_for(:courses, :take_test, test_id: test.id))
+
+
+- else
+	p class='text-danger' 没有任何课程
+	

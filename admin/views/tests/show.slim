@@ -1,0 +1,22 @@
+h4
+	=@test.name + '  '
+	small=@test.course.name
+- unless @test_results.blank?
+	table class='table table-striped'
+		tr
+			th 姓名
+			th 完成时间
+			th 操作
+		- @test_results.each do |result|
+			tr
+				td=result.account.name
+				td=result.updated_at
+				td=link_to('查看详情', url_for(:tests, :show_result, id: result.id))
+
+h4 未完成人员
+- unless @rest_students.blank?
+	-@rest_students.each do |s|
+		p class='text-warning'=s
+- else
+	p class='text-muted' 无
+

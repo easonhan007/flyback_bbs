@@ -1,3 +1,18 @@
 .main-content {
   margin-top: 80px;
 }
+
+.question {
+	/*border: 1px solid #ccc;*/
+	border-radius: 3px;
+	padding: 1em;
+	background-color: #eff6fa;
+}
+
+.question input{
+	margin-top: 1em;
+}
+
+.update-info {
+	margin-top: 1em;
+}

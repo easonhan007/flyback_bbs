@@ -10,5 +10,8 @@ FlybackBbs::App.helpers do
   	course.active? ? '可报名' : '已结束'
   end 
 
+  def to_date_time(t)
+  	t.strftime("%Y-%m-%d %H:%M")
+  end
 
 end

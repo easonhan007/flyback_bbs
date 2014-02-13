@@ -5,6 +5,13 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
     = f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
     span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
 
+- error = @test.errors.include?(:course_id)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :course_id, :class => 'control-label', text: 'Course'
+  div class='controls'
+    = f.select :course_id, collection: @courses, fields: [:name, :id], :class => 'form-control input-large input-with-feedback', :autofocus => true
+    span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'
   |&nbsp;
