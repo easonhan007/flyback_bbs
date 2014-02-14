@@ -20,7 +20,11 @@
 								td=test.name
 								td=result_status.is_a?(String) ? result_status : test_result_status(result_status)
 								td=link_to('进行考试', url_for(:courses, :take_test, test_id: test.id))
-								td=link_to('查看结果', url_for(:courses, :show_result, result_id: test.result_of_user(current_account.id).id))
+								- result = test.result_of_user(current_account.id) rescue nil
+								- if result
+									td=link_to('查看结果', url_for(:courses, :show_result, result_id: result.id))
+								- else
+									td 暂无结果
 
 
 - else
