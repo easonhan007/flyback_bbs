@@ -6,11 +6,13 @@ h4
 		tr
 			th 姓名
 			th 完成时间
+			th 结果
 			th 操作
 		- @test_results.each do |result|
 			tr
 				td=result.account.name
 				td=result.updated_at
+				td=test_result_status(result.passed?)
 				td=link_to('查看详情', url_for(:tests, :show_result, id: result.id))
 
 h4 未完成人员

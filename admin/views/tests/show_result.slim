@@ -9,4 +9,16 @@ h4
 			.answer-content
 				pre
 					code
-						=a.content.html_safe
+						=escape_html a.content
+
+= form_for(@result, url_for(:tests, :grade), role: 'form') do |f|
+	= f.hidden_field(:id)
+	.form-group
+		= f.text_area(:content, class: 'form-control', placeholder: '在这里写评语')
+	.checkbox
+		label 
+			=f.check_box(:passed, value: true, uncheck_value: false)
+			|是否通过
+
+	.form-group
+		= f.submit('保存', class: 'btn btn-primary')

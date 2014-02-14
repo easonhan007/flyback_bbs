@@ -30,6 +30,19 @@ FlybackBbs::Admin.controllers :tests do
     render 'tests/show_result'
   end
 
+  post :grade do 
+    logger.info params[:test_result][:id]
+    halt(404, 'failed to grade') if params[:test_result][:id].blank?
+    @result = TestResult.find(params[:test_result][:id])
+    ActiveRecord::Base.record_timestamps = false
+    begin 
+      @result.update_attributes(params[:test_result])
+    ensure
+      ActiveRecord::Base.record_timestamps = true
+    end 
+    redirect request.referrer
+  end 
+
   post :create do
     @test = Test.new(params[:test])
     if @test.save

@@ -1,0 +1,24 @@
+h4
+	= @result.account.name + '  '
+	small="开始时间: #{to_date_time @result.created_at} 完成时间: #{to_date_time @result.updated_at}"
+- kls = @result.passed? ? 'success' : 'default'
+span class="lable label-#{kls}"=test_result_status(@result.passed?)
+p class='text-info'="耗时#{distance_of_time_in_words(@result.created_at, @result.created_at)}"
+-unless @answers.blank?
+	-@answers.each do |a|
+		.test-result
+			.test-info
+				==to_md(a.question.content)
+			.answer-content
+				small class='text-muted'
+					= @result.account.name + '  ' + "最后更新时间 : #{to_date_time a.updated_at}"
+				pre
+					code
+						=escape_html a.content
+
+h4 点评
+- unless @result.content.blank?
+	.comment
+		==to_md(@result.content)
+- else
+	p 没有评语

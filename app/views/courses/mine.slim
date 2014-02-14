@@ -11,12 +11,16 @@
 							th 名称
 							th 状态
 							th 操作
+							th 结果
 					tbody
 						- c.tests.each do |test|
-							tr
+							- result_status = test.result_status_by_user(current_account.id)
+							- kls = result_status ? 'success' : 'error' unless result_status.is_a?(String)
+							tr class="#{kls unless kls.blank?}"
 								td=test.name
-								td=test.name
+								td=result_status.is_a?(String) ? result_status : test_result_status(result_status)
 								td=link_to('进行考试', url_for(:courses, :take_test, test_id: test.id))
+								td=link_to('查看结果', url_for(:courses, :show_result, result_id: test.result_of_user(current_account.id).id))
 
 
 - else

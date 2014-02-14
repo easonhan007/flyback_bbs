@@ -14,4 +14,7 @@ FlybackBbs::App.helpers do
   	t.strftime("%Y-%m-%d %H:%M")
   end
 
+  def test_result_status passed
+    passed ? '通过' : '不通过'
+  end
 end

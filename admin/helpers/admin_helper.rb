@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Helper methods defined here can be accessed in any controller or view in the application
 
 FlybackBbs::Admin.helpers do
@@ -6,6 +7,7 @@ FlybackBbs::Admin.helpers do
   # end
   def md_extensions
   	{:space_after_headers => true,
+     :fenced_code_blocks => true,
   	 :tables => true}
   end 
 
@@ -29,6 +31,10 @@ FlybackBbs::Admin.helpers do
   
   def to_date_time(t)
     t.strftime("%Y-%m-%d %H:%M")
+  end
+
+  def test_result_status passed
+    passed ? '通过' : '不通过'
   end
 
 end

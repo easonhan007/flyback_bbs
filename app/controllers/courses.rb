@@ -35,13 +35,16 @@ FlybackBbs::App.controllers :courses do
   end #index
 
   get :show, with: :id do
-    begin
-      @course = Course.find(params[:id])      
-    rescue 
-      halt(404, 'Invalid id or can not find the course')
-    end #begin
+    @course = Course.find(params[:id]) rescue halt(404, 'Invalid id or can not find the course')
     render 'courses/show', layout: :course
   end #show
+
+  get :show_result, with: :result_id do
+    @result = TestResult.find(params[:result_id]) rescue halt(404, 'Invalid id or can not find result')
+    halt(503, 'You are not allowed to view the result') unless @result.account_id.eql?(current_account.id)
+    @answers = @result.answers
+    render 'courses/show_result', layout: :course
+  end
 
   get :mine do
     @courses = current_account.courses

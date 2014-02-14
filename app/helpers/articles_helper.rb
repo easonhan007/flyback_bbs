@@ -6,6 +6,7 @@ FlybackBbs::App.helpers do
   # end
   def md_extensions
   	{:space_after_headers => true,
+     :fenced_code_blocks => true,
   	 :tables => true}
   end 
 
