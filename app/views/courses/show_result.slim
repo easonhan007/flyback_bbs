@@ -1,9 +1,10 @@
 h4
 	= @result.account.name + '  '
-	small="开始时间: #{to_date_time @result.created_at} 完成时间: #{to_date_time @result.updated_at}"
+	- finished_at = @result.finished_at
+	small="开始时间: #{to_date_time @result.created_at} 完成时间: #{finished_at}"
 - kls = @result.passed? ? 'success' : 'default'
 span class="lable label-#{kls}"=test_result_status(@result.passed?)
-p class='text-info'="耗时#{distance_of_time_in_words(@result.created_at, @result.created_at)}"
+p class='text-info'="耗时#{distance_of_time_in_words(@result.created_at, finished_at)}"
 -unless @answers.blank?
 	-@answers.each do |a|
 		.test-result
