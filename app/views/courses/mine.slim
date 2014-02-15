@@ -1,7 +1,7 @@
 - unless @courses.blank?
 	- @courses.each do |c|
 		.panel.panel-info
-		.panel-heading
+			.panel-heading
 				=link_to c.name, url_for(:courses, :show, id: c.id)
 			.panel-body
 			- unless c.tests.blank?
