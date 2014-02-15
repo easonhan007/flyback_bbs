@@ -2,7 +2,9 @@ h4
 	= @result.account.name + '  '
 	- finished_at = @result.finished_at
 	small="开始时间: #{to_date_time @result.created_at}开始,结束时间: #{to_date_time finished_at}"
+	= link_to('返回列表', url_for(:tests, :show, id: @result.test.id))
 p class='text-info' ="共用时#{distance_of_time_in_words(@result.created_at, finished_at)}"
+
 -unless @answers.blank?
 	-@answers.each do |a|
 		.test-result
