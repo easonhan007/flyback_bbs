@@ -1,6 +1,8 @@
 h4
 	= @result.account.name + '  '
-	small="于#{to_date_time @result.updated_at}完成"
+	- finished_at = @result.finished_at
+	small="开始时间: #{to_date_time @result.created_at}开始,结束时间: #{to_date_time finished_at}"
+p class='text-info' ="共用时#{distance_of_time_in_words(@result.created_at, finished_at)}"
 -unless @answers.blank?
 	-@answers.each do |a|
 		.test-result
@@ -11,6 +13,7 @@ h4
 					code
 						=escape_html a.content
 
+h4 评语
 = form_for(@result, url_for(:tests, :grade), role: 'form') do |f|
 	= f.hidden_field(:id)
 	.form-group
