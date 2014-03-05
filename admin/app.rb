@@ -34,6 +34,7 @@ module FlybackBbs
     end
 
     access_control.roles_for :admin do |role|
+    role.project_module :attendances, '/attendances'
     role.project_module :questions, '/questions'
     role.project_module :tests, '/tests'
     role.project_module :courses, '/courses'

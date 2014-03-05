@@ -4,6 +4,7 @@ class Account < ActiveRecord::Base
   has_many :selected_courses
   has_many :courses, through: :selected_courses
   has_many :answers
+  has_many :attendances
   
   attr_accessor :password, :password_confirmation, :all_courses
   

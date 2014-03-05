@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 21) do
+ActiveRecord::Schema.define(:version => 25) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(:version => 21) do
     t.string   "commented_by"
     t.boolean  "top",          :default => false
     t.boolean  "great",        :default => false
+  end
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "account_id"
+    t.integer  "status"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "categories", :force => true do |t|
