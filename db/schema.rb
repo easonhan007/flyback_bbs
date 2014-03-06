@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 25) do
+ActiveRecord::Schema.define(:version => 26) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(:version => 25) do
     t.integer  "account_id"
     t.integer  "status"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.datetime "attendance_time"
   end
 
   create_table "categories", :force => true do |t|
