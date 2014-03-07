@@ -16,11 +16,11 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
   div class='controls'
     = f.text_field :attendance_time, :class => 'form-control input-large input-with-feedback'
     span class='help-inline' = error ? f.error_message_on(:status, :class => 'text-error') : pat(:example)
-- error = @attendance.errors.include?(:attendance_status)
+- error = @attendance.errors.include?(:status)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :attendance_status, :class => 'control-label'
+  = f.label :status, :class => 'control-label'
   div class='controls'
-    = f.select :attendance_status, :options => ['正常','迟到','早退','缺席'], :class => 'form-control input-large input-with-feedback'
+    = f.select :status, :options => ['正常','迟到','早退','缺席'], :selected => '正常', :class => 'form-control input-large input-with-feedback'
     span class='help-inline' = error ? f.error_message_on(:status, :class => 'text-error') : pat(:example)
 - error = @attendance.errors.include?(:description)
 fieldset class='control-group#{error ? ' has-error' : ''}'

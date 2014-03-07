@@ -1,5 +1,11 @@
 FlybackBbs::Admin.controllers :attendances do
   get :index do
+
+    if params[:course_id] != nil
+      cookies[:course_name] = params[:course_name]
+      cookies[:course_id] = params[:id]
+    end
+    
     @title = "Attendances"
     @attendances = Attendance.all
     render 'attendances/index'
@@ -7,7 +13,10 @@ FlybackBbs::Admin.controllers :attendances do
 
   get :new do
     @title = pat(:new_title, :model => 'attendance')
+#    @coure = Course.find(params[:id]) rescue halt(404, 'Can not find test with id ' + params[:id].to_s)
     @attendance = Attendance.new
+    @courses = Course.order('created_at DESC').all
+    @accounts = Account.all
 
     @result = {}
     Course.all.each do |course|

@@ -43,9 +43,9 @@ div class="tabs-content"
           td class='list-column' = course.start_time
           td class='list-column' = course.description
           td class='list-column list-row-action'
-              = link_to tag_icon(:attendances_details, pat(:考勤详情))
+              = link_to tag_icon(:attendances_details, pat(:考勤详情)),url(:attendances,:index)
               = "   |   "
-              = link_to tag_icon(:start_attendance, pat(:记考勤))
+              = link_to tag_icon(:start_attendance, pat(:记考勤)),url(:attendances, :new)
           td class='list-column' = time_ago_in_words course.created_at
           td class='list-column' = time_ago_in_words course.updated_at
           td class='list-column list-row-action'

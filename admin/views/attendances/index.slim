@@ -26,9 +26,10 @@ div class="tabs-content"
                       = submit_tag  pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       div class='btn btn-default btn-small cancel' = pat(:cancel)
         th class='header' = mat(:attendance, :id)
-        th class='header' = mat(:attendance, :course_id)
-        th class='header' = mat(:attendance, :account_id)
-        th class='header' = mat(:attendance, :status)
+        th class='header' = mat(:attendance, :course)
+        th class='header' = mat(:attendance, :account)
+        th class='header' = mat(:attendance, :attendance_time)
+        th class='header' = mat(:attendance, :attendance_status)
         th class='header' = mat(:attendance, :description)
         th class='header' = mat(:attendance, :created_at)
         th class='header' = mat(:attendance, :updated_at)
@@ -39,9 +40,10 @@ div class="tabs-content"
         tr class='list-row'
           td class='list-column list-selectable' = check_box_tag 'attendance_ids[]', :value => attendance.id, :class => 'list-selectable-checkbox'
           td class='list-column' = attendance.id
-          td class='list-column' = attendance.course_id
-          td class='list-column' = attendance.account_id
-          td class='list-column' = attendance.status
+          td class='list-column' = attendance.course.name
+          td class='list-column' = attendance.account.name
+          td class='list-column' = attendance.attendance_time
+          td class='list-column' = attendance.attendance_status
           td class='list-column' = attendance.description
           td class='list-column' = time_ago_in_words attendance.created_at
           td class='list-column' = time_ago_in_words attendance.updated_at
