@@ -41,6 +41,8 @@ FlybackBbs::Admin.controllers :attendances do
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "attendance #{params[:id]}")
     @attendance = Attendance.find(params[:id])
+    @courses = Course.order('created_at DESC').all
+    @accounts = Account.all
     if @attendance
       render 'attendances/edit'
     else
