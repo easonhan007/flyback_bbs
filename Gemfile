@@ -33,6 +33,9 @@ gem 'padrino', '0.11.4'
 
 gem 'zbatery', :group => 'production'
 
+#debugger
+gem 'debugger'
+
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 

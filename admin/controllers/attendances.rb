@@ -25,17 +25,23 @@ FlybackBbs::Admin.controllers :attendances do
     render 'attendances/new'
   end
 
+#  debugger
   post :create do
-    @attendance = Attendance.new(params[:attendance])
-    if @attendance.save
-      @title = pat(:create_title, :model => "attendance #{@attendance.id}")
-      flash[:success] = pat(:create_success, :model => 'Attendance')
-      params[:save_and_continue] ? redirect(url(:attendances, :index)) : redirect(url(:attendances, :edit, :id => @attendance.id))
-    else
-      @title = pat(:create_title, :model => 'attendance')
-      flash.now[:error] = pat(:create_error, :model => 'attendance')
-      render 'attendances/new'
+    selected_account_ids = params[:attendance_account_ids]
+    selected_account_ids.each do |selected_account_id|
+      @attendance = Attendance.new(params[:attendance])
+      @attendance.update_attributes(account_id: selected_account_id.to_i)
     end
+
+      if @attendance.save
+        @title = pat(:create_title, :model => "attendance #{@attendance.id}")
+        flash[:success] = pat(:create_success, :model => 'Attendance')
+        params[:save_and_continue] ? redirect(url(:attendances, :index)) : redirect(url(:attendances, :index))
+      else
+        @title = pat(:create_title, :model => 'attendance')
+        flash.now[:error] = pat(:create_error, :model => 'attendance')
+        render 'attendances/new'
+      end
   end
 
   get :edit, :with => :id do
