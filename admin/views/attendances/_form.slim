@@ -12,14 +12,14 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 /    span class='help-inline' = error ? f.error_message_on(:account_id, :class => 'text-error') : pat(:example)
 / 选择的课程
 
-div class="form-actions"
 = "账号:"
--Account.all.each do |account|
+div class="form-actions"
   fieldset class='control-group#{error ? ' has-error' : ''}'
+-Account.all.each do |account|
     = f.label account.name, :class => 'control-label'
-    div class='controls'
       - ops = {value: account.id, id: "account_#{account.id}", checked: Account.all.map.include?(account.id) }
-      = check_box_tag 'attendance_account_ids[]', ops
+      = check_box_tag 'attendance_account_ids[]', ops 
+        |&nbsp;&nbsp;
 
 - error = @attendance.errors.include?(:attendance_time)
 fieldset class='control-group#{error ? ' has-error' : ''}'
