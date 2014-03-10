@@ -2,9 +2,8 @@
 FlybackBbs::Admin.controllers :accounts do
   get :index do
     @title = "Accounts"
-    @accounts = Account.all
-#    @accounts = Account.all.paginate(page: params[:page], per_page: 10).order('create_time DESC')
-#    @features = Feature.where(project_id: cookies[:project_id]).paginate(page: params[:page], per_page: 10).order('id ASC')
+#    @accounts = Account.all
+    @accounts = Account.order('created_at DESC').page(params[:page]).per_page(10)
     render 'accounts/index'
   end
 
