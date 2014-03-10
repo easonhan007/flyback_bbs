@@ -1,3 +1,4 @@
+#encoding: utf-8
 FlybackBbs::Admin.controllers :attendances do
   get :index do
 
@@ -42,6 +43,26 @@ FlybackBbs::Admin.controllers :attendances do
         flash.now[:error] = pat(:create_error, :model => 'attendance')
         render 'attendances/new'
       end
+  end
+
+  get :show, with: :id do
+    @course = Course.find(params[:id]) rescue halt(404, 'Can not find course with id' + params[:id].to_s)
+    @accounts = Account.joins(:attendances).where("attendances.course_id=?", @course.id).group(:id)
+    @results = {}
+    @results = @accounts.map{|account|
+                              on_time = account.attendances.where(attendance_status: '正常', course_id: @course.id ).count
+                              arrive_late= account.attendances.where(attendance_status: '迟到', course_id: @course.id).count
+                              leave_early= account.attendances.where(attendance_status:'早退', course_id: @course.id).count
+                              absence = account.attendances.where(attendance_status: '缺席', course_id: @course.id).count
+                              {
+                                account_name: account.name,
+                                on_time: on_time,
+                                arrive_late: arrive_late,
+                                leave_early: leave_early,
+                                absence: absence
+                              }
+    }
+    render 'attendances/show'
   end
 
   get :edit, :with => :id do

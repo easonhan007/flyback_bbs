@@ -1,0 +1,18 @@
+h4
+= @course.name + "课程考勤统计"
+table class='table table-strped'
+  tr
+    th 姓名
+    th 正常
+    th 迟到
+    th 早退
+    th 缺席
+    th 操作
+  - @results.each do |result|
+    tr
+      td=result[:account_name]
+      td=result[:on_time]
+      td=result[:arrive_late]
+      td=result[:leave_early]
+      td=result[:absence]
+      td=link_to('查看详情')
