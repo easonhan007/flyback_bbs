@@ -1,6 +1,5 @@
 h6
 = @account.name + "考勤记录详情" 
-= link_to('返回统计',url_for('#')
 table class='table table-strped'
   tr
     th 课程名称
@@ -13,3 +12,4 @@ table class='table table-strped'
       td=result.attendance_time
       td=result.attendance_status
       td=result.description
+= will_paginate @results, renderer: BootstrapPagination::Sinatra

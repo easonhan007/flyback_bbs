@@ -67,7 +67,7 @@ FlybackBbs::Admin.controllers :attendances do
 
   get :show_detail, with: :id do
     @account = Account.find(params[:id])
-    @results= @account.attendances.order('course_id')
+    @results= @account.attendances.order('course_id').page(params[:page]).per_page(10)
 #    @course = Course.find(params[:id])
 #    @attendances = Attendance.joins(:account).where("attendances.account_id=?", @account.id)
 #
