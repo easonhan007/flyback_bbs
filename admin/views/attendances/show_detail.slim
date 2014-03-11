@@ -1,0 +1,15 @@
+h6
+= @account.name + "考勤记录详情" 
+= link_to('返回统计',url_for('#')
+table class='table table-strped'
+  tr
+    th 课程名称
+    th 考勤时间
+    th 考勤状态
+    th 备注
+  - @results.each do |result|
+    tr
+      td=result.course.name
+      td=result.attendance_time
+      td=result.attendance_status
+      td=result.description

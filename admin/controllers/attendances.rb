@@ -26,7 +26,6 @@ FlybackBbs::Admin.controllers :attendances do
     render 'attendances/new'
   end
 
-#  debugger
   post :create do
     selected_account_ids = params[:attendance_account_ids]
     selected_account_ids.each do |selected_account_id|
@@ -45,7 +44,7 @@ FlybackBbs::Admin.controllers :attendances do
       end
   end
 
-  get :show, with: :id do
+  get :statistics, with: :id do
     @course = Course.find(params[:id]) rescue halt(404, 'Can not find course with id' + params[:id].to_s)
     @accounts = Account.joins(:attendances).where("attendances.course_id=?", @course.id).group(:id)
     @results = {}
@@ -59,11 +58,41 @@ FlybackBbs::Admin.controllers :attendances do
                                 on_time: on_time,
                                 arrive_late: arrive_late,
                                 leave_early: leave_early,
-                                absence: absence
+                                absence: absence,
+                                account_id: account.id
                               }
     }
-    render 'attendances/show'
+    render 'attendances/statistics'
   end
+
+  get :show_detail, with: :id do
+    @account = Account.find(params[:id])
+    @results= @account.attendances.order('course_id')
+#    @course = Course.find(params[:id])
+#    @attendances = Attendance.joins(:account).where("attendances.account_id=?", @account.id)
+#
+#    @results = {}
+#    @results = @attendances.map{|attendance|
+#                              {
+#                                attendance_time: attendance.attendance_time,
+#                                attendance_status: attendance.attendance_status,
+#                                attendance_description: attendance.description
+#                              }}
+    render 'attendances/show_detail'
+  end
+  post :grade do 
+    logger.info params[:show_detail][:id]
+    halt(404, 'failed to grade') if params[:show_detail][:id].blank?
+    @result = TestResult.find(params[:show_detail][:id])
+    ActiveRecord::Base.record_timestamps = false
+    begin 
+      @result.update_attributes(params[:show_detail])
+    ensure
+      ActiveRecord::Base.record_timestamps = true
+    end 
+    redirect request.referrer
+  end 
+
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "attendance #{params[:id]}")

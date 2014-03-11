@@ -15,4 +15,4 @@ table class='table table-strped'
       td=result[:arrive_late]
       td=result[:leave_early]
       td=result[:absence]
-      td=link_to('查看详情')
+      td=link_to tag_icon(:attendance_show_detail, pat(:查看详情)),url_for(:attendances, :show_detail, id: result[:account_id]) 
