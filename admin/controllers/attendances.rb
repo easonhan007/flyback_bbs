@@ -14,7 +14,7 @@ FlybackBbs::Admin.controllers :attendances do
 
   get :new do
     @title = pat(:new_title, :model => 'attendance')
-#    @coure = Course.find(params[:id]) rescue halt(404, 'Can not find test with id ' + params[:id].to_s)
+    @course = Course.find(params[:id]) rescue halt(404, 'Can not find test with id ' + params[:id].to_s)
     @attendance = Attendance.new
     @courses = Course.order('created_at DESC').all
     @accounts = Account.all

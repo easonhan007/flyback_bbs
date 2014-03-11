@@ -77,4 +77,15 @@ FlybackBbs::App.controllers :courses do
     redirect request.referrer
   end 
 
+  get :attendance_detail, with: :id do
+    @course = Course.find(params[:id]) rescue halt(404, 'Invalid id or can not find the course')
+    @current_accout_all_attendances = current_account.attendances
+    @results = @current_accout_all_attendances.where(course_id: @course.id).order('attendance_time DESC').page(params[:page]).per_page(10)
+
+    @on_time = @results.where(attendance_status: '正常').count
+    @arrive_late= @results.where(attendance_status: '迟到').count
+    @leave_early = @results.where(attendance_status: '早退').count
+    @absence = @results.where(attendance_status: '缺席').count
+    render 'courses/attendance_detail', layout: :course
+  end 
 end

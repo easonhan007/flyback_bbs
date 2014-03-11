@@ -17,7 +17,7 @@ div class="form-actions"
   fieldset class='control-group#{error ? ' has-error' : ''}'
 -Account.all.each do |account|
     = f.label account.name, :class => 'control-label'
-      - ops = {value: account.id, id: "account_#{account.id}", checked: Account.all.map.include?(account.id) }
+      - ops = {value: account.id, id: "account_#{account.id}", checked: @course.accounts.map.include?(account.id) }
       = check_box_tag 'attendance_account_ids[]', ops 
         |&nbsp;&nbsp;
 
