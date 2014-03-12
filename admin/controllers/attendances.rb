@@ -2,13 +2,8 @@
 FlybackBbs::Admin.controllers :attendances do
   get :index do
 
-    if params[:course_id] != nil
-      cookies[:course_name] = params[:course_name]
-      cookies[:course_id] = params[:id]
-    end
-    
     @title = "Attendances"
-    @attendances = Attendance.all
+    @attendances = Attendance.order('created_at DESC').page(params[:page]).per_page(20)
     render 'attendances/index'
   end
 
@@ -16,21 +11,18 @@ FlybackBbs::Admin.controllers :attendances do
     @title = pat(:new_title, :model => 'attendance')
     @course = Course.find(params[:id]) rescue halt(404, 'Can not find test with id ' + params[:id].to_s)
     @attendance = Attendance.new
-    @courses = Course.order('created_at DESC').all
+#    @courses = Course.order('created_at DESC').all
     @accounts = Account.all
 
-    @result = {}
-    Course.all.each do |course|
-      @result[course.id] = course.accounts.map{|account| {id: account.id, name: account.name}}
-    end
     render 'attendances/new'
   end
 
   post :create do
+    course_id = params[:course_id]
     selected_account_ids = params[:attendance_account_ids]
     selected_account_ids.each do |selected_account_id|
       @attendance = Attendance.new(params[:attendance])
-      @attendance.update_attributes(account_id: selected_account_id.to_i)
+      @attendance.update_attributes(account_id: selected_account_id.to_i,course_id: course_id.to_i)
     end
 
       if @attendance.save

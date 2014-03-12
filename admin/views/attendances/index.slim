@@ -2,6 +2,7 @@ ul class="nav nav-tabs"
   li class="active" = link_to tag_icon(:list, pat(:list)), url(:attendances, :index)
   li = link_to tag_icon(:plus, pat(:new)), url(:attendances, :new)
 
+= will_paginate @attendances, renderer: BootstrapPagination::Sinatra
 div class="tabs-content"
   table class="table table-striped table-hover table-condensed" id="list"
     thead
@@ -58,3 +59,4 @@ div class="tabs-content"
                   - form_tag url(:attendances, :destroy, :id => attendance.id), :method => :delete do
                     = submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
                     div class='btn btn-default btn-small cancel' = pat(:cancel)
+= will_paginate @attendances, renderer: BootstrapPagination::Sinatra

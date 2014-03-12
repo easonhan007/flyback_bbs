@@ -2,8 +2,10 @@
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :course_id, :class => 'control-label'
   div class='controls'
-    = f.select :course_id, collection: @courses, fields: [:name, :id], :class => 'form-control input-large input-with-feedback', :autofocus => true
-    span class='help-inline' = error ? f.error_message_on(:course_id, :class => 'text-error') : pat(:example)
+    /= f.select :course_id, collection: @courses, fields: [:name, :id], :class => 'form-control input-large input-with-feedback', :autofocus => true
+    = f.label @course.name
+    - ops = {value: @course.id, id: "course #{@course.id}", checked: @course.id}
+    = check_box_tag 'course_id', ops
 /- error = @attendance.errors.include?(:account_id)
 /fieldset class='control-group#{error ? ' has-error' : ''}'
 /  = f.label :account_id, :class => 'control-label'
@@ -15,7 +17,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 = "Account:"
 div class="form-actions"
   fieldset class='control-group#{error ? ' has-error' : ''}'
--Account.all.each do |account|
+-@course.accounts.all.each do |account|
     = f.label account.name, :class => 'control-label'
       - ops = {value: account.id, id: "account_#{account.id}", checked: @course.accounts.map.include?(account.id) }
       = check_box_tag 'attendance_account_ids[]', ops 
