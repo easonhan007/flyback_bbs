@@ -1,0 +1,29 @@
+h6
+= @course.name + "考勤统计" 
+= link_to('   <<返回我的课程',url_for(:courses, :mine))
+table class='table table-strped'
+  tr
+    th 正常
+    th 迟到 
+    th 早退
+    th 缺席
+    tr
+      td=@on_time
+      td=@arrive_late
+      td=@leave_early
+      td=@absence
+
+h6
+= @course.name + "考勤记录详情" 
+h6
+table class='table table-strped'
+  tr
+    th 考勤时间
+    th 考勤状态
+    th 备注
+  - @results.each do |result|
+    tr
+      td=result.attendance_time
+      td=result.attendance_status
+      td=result.description
+= will_paginate @results, renderer: BootstrapPagination::Sinatra

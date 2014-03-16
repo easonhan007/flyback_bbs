@@ -2,7 +2,8 @@
 FlybackBbs::Admin.controllers :accounts do
   get :index do
     @title = "Accounts"
-    @accounts = Account.all
+#    @accounts = Account.all
+    @accounts = Account.order('created_at DESC').page(params[:page]).per_page(10)
     render 'accounts/index'
   end
 
@@ -17,7 +18,7 @@ FlybackBbs::Admin.controllers :accounts do
     if @account.save
       @title = pat(:create_title, :model => "account #{@account.id}")
       flash[:success] = pat(:create_success, :model => 'Account')
-      params[:save_and_continue] ? redirect(url(:accounts, :index)) : redirect(url(:accounts, :edit, :id => @account.id))
+      params[:save_and_continue] ? redirect(url(:accounts, :new)) : redirect(url(:accounts, :index))
     else
       @title = pat(:create_title, :model => 'account')
       flash.now[:error] = pat(:create_error, :model => 'account')
@@ -53,7 +54,7 @@ FlybackBbs::Admin.controllers :accounts do
         flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:accounts, :index)) :
-          redirect(url(:accounts, :edit, :id => @account.id))
+          redirect(url(:accounts, :index))
       else
         flash.now[:error] = pat(:update_error, :model => 'account')
         render 'accounts/edit'

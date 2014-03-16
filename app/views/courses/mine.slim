@@ -3,6 +3,7 @@
 		.panel.panel-info
 			.panel-heading
 				=link_to c.name, url_for(:courses, :show, id: c.id)
+				=link_to('  |  考勤记录',url_for(:courses, :attendance_detail, id: c.id))
 			.panel-body
 			- unless c.tests.blank?
 				table class='table'
