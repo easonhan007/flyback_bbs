@@ -7,7 +7,7 @@
           =link_to(c.name, url_for(:categories, :show, id: c.id))
 	  li
 	    -if logged_in?
-	      = link_to current_account.try(:name), '#'
+	      = link_to(current_account.try(:name),url_for(:courses, :index, id: current_account.id)) 
 	    -else
 	      = link_to('Login', url_for(:sessions, :new), class: 'text-warning bolder') 
 
