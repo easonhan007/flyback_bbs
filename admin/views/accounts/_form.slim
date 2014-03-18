@@ -41,15 +41,18 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
   div class='controls'
     = f.check_box :active, uncheck_value: 'false'
 / 选择的课程    
--Course.all.each do |c|
-  fieldset class='control-group#{error ? ' has-error' : ''}'
-    = f.label c.name, :class => 'control-label'
-    div class='controls'
-      - ops = {value: c.id, id: "course_#{c.id}"}
-      - if @account.course_selected?(c) 
-        - ops[:checked] = 'checked'
-      /= check_box_tag 'account[all_courses][]', value: c.id, id: "course_#{c.id}"
-      = check_box_tag 'account[all_courses][]', ops
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  legend 课程列表
+  -Course.all.each do |c|
+    //= f.label c.name, :class => 'control-label'
+    .checkbox
+      label 
+        - ops = {value: c.id, id: "course_#{c.id}"}
+        - if @account.course_selected?(c) 
+          - ops[:checked] = 'checked'
+        /= check_box_tag 'account[all_courses][]', value: c.id, id: "course_#{c.id}"
+        = check_box_tag 'account[all_courses][]', ops
+        =c.name
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'
