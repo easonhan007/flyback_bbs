@@ -18,6 +18,8 @@ FlybackBbs::Admin.controllers :attendances do
   end
 
   post :create do
+    #获取到从view传过来的课程id与选中的所有账号id
+    #通过遍历获取到的账号id，更新存入数据库中的课程id与账号id
     course_id = params[:course_id]
     selected_account_ids = params[:attendance_account_ids]
     selected_account_ids.each do |selected_account_id|
